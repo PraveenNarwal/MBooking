@@ -8,7 +8,7 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 import { Link, useParams } from "react-router-dom";
 import Header from "../../common/header/Header";
 import StarBorderIcon from '@material-ui/icons/StarBorder';
-import ReactPlayer from 'react-player';
+import YouTube from "react-youtube";
 import Rating from "@material-ui/lab/Rating";
 
 
@@ -43,15 +43,12 @@ const useStyles = makeStyles((theme) => ({
 
 
 }));
-
-
-
-
+const opts = {
+    height: "390",
+    width: "100%",
+};
 
 function Details(props) {
-
-
-
 
     const [singleMovie, setSingleMovie] = useState()
 
@@ -93,11 +90,9 @@ function Details(props) {
                     <Typography > <span style={{ fontWeight: "bold" }}>Rating: </span>{singleMovie?.critics_rating}</Typography>
                     <Typography style={{ marginTop: 16 }}><span style={{ fontWeight: "bold" }}>Plot: </span> <a href={singleMovie?.wiki_url}>(wiki_url)</a>{singleMovie?.storyline}</Typography>
                     <Typography style={{ marginTop: 16 }}><span style={{ fontWeight: "bold" }}>Trailer: </span>
-                        {/* <YouTube
-                            videoId={singleMovie?.trailer_url.split("?v=")[1]}
-                            opts={classes.youtube}
-                        /> */}
-                        <ReactPlayer url={singleMovie?.trailer_url} controls={true} />
+
+                        {/* <ReactPlayer url={singleMovie?.trailer_url} controls={true} /> */}
+                        <YouTube videoId={singleMovie?.trailer_url.split("/")[-1]} opts={opts} />
 
                     </Typography>
 
