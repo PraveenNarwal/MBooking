@@ -14,6 +14,8 @@ import Box from '@material-ui/core/Box';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Input from '@material-ui/core/Input';
+import { Link } from '@material-ui/core';
+import { useHistory, useLocation, useParams } from 'react-router-dom';
 
 function Header() {
 
@@ -25,9 +27,31 @@ function Header() {
         setUser(localStorage.getItem('userInfo'))
     }, [user])
 
+    const history = useHistory()
+
+    const location = useLocation()
+
+    const params = useParams()
+
+    const bookshow = () => {
+        if (user) {
+            console.log(params);
+            history.push(`/bookshow/${params.id}`)
+            return;
+        }
+        else setModalOpen(true)
+
+    }
+
+
+
     return (
         <div className="headerCSS">
             <img id='logo' src="https://cdn.upgrad.com/uploads/production/286e1f11-1897-4d0c-ab0f-6b2bfc1ce642/logo.svg"></img>
+
+            {location.pathname.includes('details') && <Button variant="contained" onClick={bookshow} color="primary" style={{
+                float: "right", position: "absolute", right: 100, top: 7
+            }} > BOOK SHOW  </Button>}
 
 
             {user ? <Button id='login' variant="contained" onClick={() => {
@@ -173,6 +197,8 @@ export function TabFirst({ setUser }) {
         setName(event.target.value);
     };
 
+    const history = useHistory()
+
     const handleLogin = () => {
         const user = localStorage.getItem('userInfo')
 
@@ -181,6 +207,7 @@ export function TabFirst({ setUser }) {
         if (!user) {
             localStorage.setItem('userInfo', true)
             setUser(true)
+            history.push('/')
         }
     }
 

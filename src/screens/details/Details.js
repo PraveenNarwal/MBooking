@@ -65,10 +65,8 @@ function Details(props) {
 
     const classes = useStyles();
     return (
-        <div><Header /> <Link to="/bookshow">
-            <Button variant="contained" color="primary" style={{
-                float: "right", position: "absolute", right: 100, top: 7
-            }} > BOOK SHOW  </Button> </Link>
+        <div><Header />
+
 
             <Typography >
                 <Link to="/" className={classes.title} style={{ textDecoration: "none" }}>

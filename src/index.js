@@ -13,7 +13,8 @@ ReactDOM.render(
 
     <Route path="/" component={Home} exact />
     <Route path="/details/:id" component={Details} />
-    <Route path="/bookshow" component={BookShow} />
+    <Route path="/bookshow/:id" component={BookShow} />
+    <Route path="/confirm/:id" component={Confirmation} />
 
   </BrowserRouter>
   </>,
